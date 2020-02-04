@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="ch.jll.nat_speedtest.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_mobile"
+        android:name="ch.jll.nat_speedtest.ui.mobile_test.MobileTestFragment"
         android:label="@string/title_mobile"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_mobiletest" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="ch.jll.nat_speedtest.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_bandwith"
+        android:name="ch.jll.nat_speedtest.ui.bandwith_test.BandwithTestFragment"
         android:label="@string/title_location"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_bandwithtest" />
 </navigation>
