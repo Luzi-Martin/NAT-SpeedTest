@@ -3,4 +3,13 @@
     <string name="title_mobile">Mobil-Speed</string>
     <string name="title_home">Home</string>
     <string name="title_location">Heim-Bandbreite</string>
+    <string name="location_whatPlace">Für welche Adresse willst du einen Speedtest durchführen?</string>
+    <string name="location_plz">Postleitzahl</string>
+    <string name="location_ort">Ort</string>
+    <string name="location_adresse">Strasse</string>
+    <string name="location_nummer">Hausnummer</string>
+    <string name="location_submit_btn">Test starten</string>
+    <string name="location_upload_speed">...</string>
+    <string name="location_download_speed">...</string>
+    <string name="mbs">MBit/s</string>
 </resources>

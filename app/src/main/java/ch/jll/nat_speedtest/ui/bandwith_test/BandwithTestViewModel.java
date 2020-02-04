@@ -10,7 +10,6 @@ public class BandwithTestViewModel extends ViewModel {
 
     public BandwithTestViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Bandwith fragment");
     }
 
     public LiveData<String> getText() {
