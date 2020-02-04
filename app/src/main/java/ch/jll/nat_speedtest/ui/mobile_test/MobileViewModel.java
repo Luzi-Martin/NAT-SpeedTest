@@ -10,7 +10,7 @@ public class MobileViewModel extends ViewModel {
 
     public MobileViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is MObile fragment");
+        mText.setValue("This is Mobile fragment");
     }
 
     public LiveData<String> getText() {
