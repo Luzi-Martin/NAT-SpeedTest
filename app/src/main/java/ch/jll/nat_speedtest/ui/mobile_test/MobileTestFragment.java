@@ -1,4 +1,4 @@
-package ch.jll.nat_speedtest.ui.dashboard;
+package ch.jll.nat_speedtest.ui.mobile_test;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import ch.jll.nat_speedtest.R;
 
-public class DashboardFragment extends Fragment {
+public class MobileTestFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private MobileViewModel mobileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(this, new Observer<String>() {
+        mobileViewModel =
+                ViewModelProviders.of(this).get(MobileViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_mobiletest, container, false);
+        final TextView textView = root.findViewById(R.id.text_mobileTest);
+        mobileViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
