@@ -3,4 +3,8 @@
     <string name="title_mobile">Mobil-Speed</string>
     <string name="title_home">Home</string>
     <string name="title_location">Heim-Bandbreite</string>
+    <string name="subtitle_home">Unsere Speedtest</string>
+    <string name="home_description">Diese App wurde aus 3 Lernenden erstellt: Jigme, Lani und Luzi</string>
+    <string name="home_mobile_description">Unser schneller Speedtest für unterwegs, schau schnell nach, wie gut dein Internet ist und überzeuge dich selbst!</string>
+    <string name="home_location_description">Du willst wissen, wie gut die Leitung in deinem zu Hause, oder in der Wohnung deines Freundes ist?\nDas geht hier ganz einfach!</string>
 </resources>
