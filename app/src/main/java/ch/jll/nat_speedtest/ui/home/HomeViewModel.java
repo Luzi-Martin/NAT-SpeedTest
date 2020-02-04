@@ -10,7 +10,7 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fraegment");
+        mText.setValue("Willkommen auf NAT-Speedtest");
     }
 
     public LiveData<String> getText() {
