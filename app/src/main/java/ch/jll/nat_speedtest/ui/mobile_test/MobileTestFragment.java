@@ -30,6 +30,8 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     private String upload = "";
     private TextView txtDownload;
     private TextView txtUpload;
+    ErrorDialog errorDialog = new ErrorDialog();
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mobileViewModel = ViewModelProviders.of(this).get(MobileViewModel.class);
@@ -55,6 +57,11 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     public void speedTestResult(final String result) {
         getActivity().runOnUiThread(new Runnable() {
             public void run() {
+                if(result == "Error") {
+                    errorDialog.showAlertDialog(getContext(),getResources().getString(R.string.failed));
+                    btnStartTest.setEnabled(true);
+                    return;
+                }
                 if(download == "") {
                     download = result + " Mbit/s";
                     getUploadSpeed();
@@ -74,7 +81,6 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     @Override
     public void onClick(View v) {
         if(!isNetworkConnectionAvailable()) {
-            ErrorDialog errorDialog = new ErrorDialog();
             errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message));
             return;
         }

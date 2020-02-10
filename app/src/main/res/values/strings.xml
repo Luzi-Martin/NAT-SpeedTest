@@ -19,5 +19,6 @@
     <string name="max_upload">Max. Upload:</string>
     <string name="noResults">...</string>
     <string name="error">Error</string>
-    <string name="error_message">"Etwas funktioniert nicht, versuchen Sie es später"</string>
+    <string name="error_message">"Keine Internetverbindung: Verbinden Sie sich bitte mit dem Internet."</string>
+    <string name="failed">Test ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.</string>
 </resources>
