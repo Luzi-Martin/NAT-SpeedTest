@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/navigation_mobile"
-        android:icon="@drawable/smartphone"
+        android:icon="@drawable/phone_cellular"
         android:title="@string/title_mobile" />
 
     <item
@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_bandwith"
-        android:icon="@drawable/placeholder"
+        android:icon="@drawable/homewifi"
         android:title="@string/title_location" />
 
 </menu>
