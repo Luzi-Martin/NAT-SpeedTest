@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">NAT-SpeedTest</string>
+    <string name="home_title">Willkommen zur Neo-AI-Terabyte-Speed-Test</string>
     <string name="title_mobile">Mobil-Speed</string>
     <string name="title_home">Home</string>
     <string name="title_location">Heim-Bandbreite</string>
@@ -17,4 +18,6 @@
     <string name="max_download">Max. Download:</string>
     <string name="max_upload">Max. Upload:</string>
     <string name="noResults">...</string>
+    <string name="error">Error</string>
+    <string name="error_message">"Etwas funktioniert nicht, versuchen Sie es später"</string>
 </resources>
