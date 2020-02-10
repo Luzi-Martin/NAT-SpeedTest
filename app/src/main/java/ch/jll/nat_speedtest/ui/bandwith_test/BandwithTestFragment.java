@@ -1,4 +1,5 @@
 package ch.jll.nat_speedtest.ui.bandwith_test;
+import ch.jll.nat_speedtest.R;
 
 import android.os.Bundle;
 import android.util.JsonReader;
@@ -16,13 +17,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 import ch.jll.nat_speedtest.R;
 import ch.jll.nat_speedtest.speedtest.BandWithTest;
 import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
+import java.io.IOException;
 
 
 public class BandwithTestFragment extends Fragment implements View.OnClickListener, SpeedTestCallback {
@@ -31,13 +35,13 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
     private Button btnStartTest;
 
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         bandwithTestViewModel =
                 ViewModelProviders.of(this).get(BandwithTestViewModel.class);
         View root = inflater.inflate(R.layout.fragment_bandwithtest, container, false);
         final TextView textView = root.findViewById(R.id.text_bandWithTest);
+        final Button button = root.findViewById(R.id.btnStart);
         bandwithTestViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

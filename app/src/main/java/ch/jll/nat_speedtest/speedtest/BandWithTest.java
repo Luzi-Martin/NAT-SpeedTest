@@ -26,8 +26,6 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         JSONObject address = new JSONObject();
         JSONObject JsonData = new JSONObject();
 
-
-
         try {
             address.put("zipCode4", this.zipCode);
             address.put("city", this.city);
@@ -93,10 +91,6 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         } catch (Exception e) {
 
         }
-    }
-
-    public String getResponse(){
-        return this.response;
     }
 
 }
