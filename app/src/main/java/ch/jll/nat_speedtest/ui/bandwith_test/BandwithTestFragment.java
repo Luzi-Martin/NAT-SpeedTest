@@ -38,7 +38,7 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
                 textView.setText(s);
             }
         });
-        btnStartTest = root.findViewById(R.id.btnStartTest);
+        btnStartTest = root.findViewById(R.id.btnStartBandWithTest);
         btnStartTest.setOnClickListener(this);
         return root;
     }
