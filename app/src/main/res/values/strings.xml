@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">NAT-SpeedTest</string>
-    <string name="home_title">Willkommen zur Neo-AI-Terabyte-Speed-Test</string>
+    <string name="home_title">Neo-AI-Terabyte\nSpeed-Test</string>
     <string name="title_mobile">Mobil-Speed</string>
     <string name="title_home">Home</string>
     <string name="title_location">Heim-Bandbreite</string>
@@ -21,4 +21,7 @@
     <string name="error">Error</string>
     <string name="error_message">"Keine Internetverbindung: Verbinden Sie sich bitte mit dem Internet."</string>
     <string name="failed">Test ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.</string>
+    <string name="mobile_test_desc">Mit einem Klick auf den blauen Knopf können Sie ihre aktuelle Internetgeschwindigkeit messen.</string>
+    <string name="bandWith_test_desc">Mit einem Klick auf den blauen Knopf können Sie die Bandbreite ihres Hauses oder dessen ihres Freundes herausfinden.\nGeben Sie dazu die gewünschte Adresse ein und starten Sie den Test.</string>
+
 </resources>

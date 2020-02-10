@@ -26,7 +26,7 @@ public class BandwithTestFragment extends Fragment {
         bandwithTestViewModel =
                 ViewModelProviders.of(this).get(BandwithTestViewModel.class);
         View root = inflater.inflate(R.layout.fragment_bandwithtest, container, false);
-        final TextView textView = root.findViewById(R.id.text_bandWithTest);
+        //final TextView textView = root.findViewById(R.id.text_bandWithTest);
         final Button button = root.findViewById(R.id.btnStart);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,12 +38,12 @@ public class BandwithTestFragment extends Fragment {
                 }
             }
         });
-        bandwithTestViewModel.getText().observe(this, new Observer<String>() {
+        /*bandwithTestViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        });*/
         return root;
     }
 

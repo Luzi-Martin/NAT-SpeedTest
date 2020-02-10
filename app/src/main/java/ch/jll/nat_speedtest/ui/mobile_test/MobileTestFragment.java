@@ -36,13 +36,13 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mobileViewModel = ViewModelProviders.of(this).get(MobileViewModel.class);
         root = inflater.inflate(R.layout.fragment_mobiletest, container, false);
-        final TextView textView = root.findViewById(R.id.text_mobileTest);
+        /*final TextView textView = root.findViewById(R.id.text_mobileTest);
         mobileViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        });*/
         btnStartTest = root.findViewById(R.id.btnStartMobileTest);
         btnStartTest.setOnClickListener(this);
 
