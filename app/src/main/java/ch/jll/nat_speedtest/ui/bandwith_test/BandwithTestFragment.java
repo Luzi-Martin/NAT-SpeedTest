@@ -1,9 +1,11 @@
 package ch.jll.nat_speedtest.ui.bandwith_test;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -12,11 +14,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import ch.jll.nat_speedtest.R;
+import org.json.JSONObject;
 
-public class BandwithTestFragment extends Fragment {
+import ch.jll.nat_speedtest.R;
+import ch.jll.nat_speedtest.speedtest.BandWithTest;
+
+
+public class BandwithTestFragment extends Fragment implements View.OnClickListener{
 
     private BandwithTestViewModel bandwithTestViewModel;
+    private Button btnStartTest;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,8 +38,15 @@ public class BandwithTestFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        btnStartTest = root.findViewById(R.id.btnStartTest);
+        btnStartTest.setOnClickListener(this);
         return root;
     }
 
 
+    @Override
+    public void onClick(View v) {
+        BandWithTest bandWithTest = new BandWithTest();
+        bandWithTest.execute();
+    }
 }
