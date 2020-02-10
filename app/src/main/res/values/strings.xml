@@ -17,4 +17,5 @@
     <string name="max_download">Max. Download:</string>
     <string name="max_upload">Max. Upload:</string>
     <string name="noResults">...</string>
+    <string name="noAdress">Adresse nicht gefunden</string>
 </resources>
