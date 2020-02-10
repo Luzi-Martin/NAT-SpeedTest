@@ -1,7 +1,9 @@
 package ch.jll.nat_speedtest.ui.mobile_test;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 import ch.jll.nat_speedtest.R;
 import ch.jll.nat_speedtest.speedtest.SpeedTest;
 import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
+import ch.jll.nat_speedtest.ui.errorDialog.ErrorDialog;
 
 public class MobileTestFragment extends Fragment implements SpeedTestCallback, View.OnClickListener {
 
@@ -50,11 +53,8 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
 
     @Override
     public void speedTestResult(final String result) {
-
         getActivity().runOnUiThread(new Runnable() {
             public void run() {
-
-
                 if(download == "") {
                     download = result + " Mbit/s";
                     getUploadSpeed();
@@ -73,6 +73,11 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
 
     @Override
     public void onClick(View v) {
+        if(!isNetworkConnectionAvailable()) {
+            ErrorDialog errorDialog = new ErrorDialog();
+            errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message));
+            return;
+        }
         txtDownload.setText("...");
         txtUpload.setText("...");
 
@@ -88,6 +93,13 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     private void getUploadSpeed() {
         SpeedTest speedtest = new SpeedTest(this);
         speedtest.execute("Up");
+    }
+
+    private boolean isNetworkConnectionAvailable() {
+        ConnectivityManager connectivityService = (ConnectivityManager)
+                getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityService.getActiveNetworkInfo();
+        return null != networkInfo && networkInfo.isConnected();
     }
 }
 

@@ -27,7 +27,7 @@ public class BandwithTestFragment extends Fragment {
                 ViewModelProviders.of(this).get(BandwithTestViewModel.class);
         View root = inflater.inflate(R.layout.fragment_bandwithtest, container, false);
         final TextView textView = root.findViewById(R.id.text_bandWithTest);
-        final Button button = root.findViewById(R.id.btnStartTest);
+        final Button button = root.findViewById(R.id.btnStart);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
