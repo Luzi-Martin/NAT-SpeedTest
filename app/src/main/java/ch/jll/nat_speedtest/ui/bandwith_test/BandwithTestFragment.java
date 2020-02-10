@@ -47,6 +47,8 @@ public class BandwithTestFragment extends Fragment {
         return root;
     }
 
+
+
     private void sendData() throws IOException {
         String postalCode, place, street, houseNumber;
         View view = getView();
