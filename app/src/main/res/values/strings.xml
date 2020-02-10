@@ -2,6 +2,7 @@
     <string name="app_name">NAT-SpeedTest</string>
     <string name="title_mobile">Mobil-Speed</string>
     <string name="title_home">Home</string>
+    <string name="home_title">Neo-AI-Terabyte\nSpeed-Test</string>
     <string name="title_location">Heim-Bandbreite</string>
     <string name="subtitle_home">Unsere Speedtest</string>
     <string name="home_description">Diese App wurde aus 3 Lernenden erstellt:\nJigme, Lani und Luzi</string>
