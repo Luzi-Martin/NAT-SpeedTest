@@ -56,30 +56,35 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
      */
     @Override
     public void speedTestResult(final String result) {
-        getActivity().runOnUiThread(new Runnable() {
-            public void run() {
-                if(result.contains("ping:")) {
-                    txtPing.setText(result.replace("ping:", ""));
-                    return;
+        try {
+            getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    if(result.contains("ping:")) {
+                        txtPing.setText(result.replace("ping:", ""));
+                        return;
+                    }
+                    if (result == "Error") {
+                        errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.failed));
+                        endLoading();
+                        return;
+                    }
+                    if (download == "") {
+                        download = result + " Mbit/s";
+                        getUploadSpeed();
+                    } else if (upload == "") {
+                        upload = result + " Mbit/s";
+                        txtDownload.setText(download);
+                        txtUpload.setText(upload);
+                        download = "";
+                        upload = "";
+                        endLoading();
+                    }
                 }
-                if (result == "Error") {
-                    errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.failed));
-                    endLoading();
-                    return;
-                }
-                if (download == "") {
-                    download = result + " Mbit/s";
-                    getUploadSpeed();
-                } else if (upload == "") {
-                    upload = result + " Mbit/s";
-                    txtDownload.setText(download);
-                    txtUpload.setText(upload);
-                    download = "";
-                    upload = "";
-                    endLoading();
-                }
-            }
-        });
+            });
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @Override
