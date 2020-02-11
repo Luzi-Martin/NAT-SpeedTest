@@ -1,6 +1,8 @@
 package ch.jll.nat_speedtest.speedtest;
 
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.TextView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
