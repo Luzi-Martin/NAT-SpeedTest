@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     private TextView txtDownload;
     private TextView txtUpload;
     private ErrorDialog errorDialog = new ErrorDialog();
+    private ProgressBar progressBar;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
         btnStartTest.setOnClickListener(this);
         txtDownload = root.findViewById(R.id.maxMobileDownload);
         txtUpload = root.findViewById(R.id.maxMobileUpload);
+        progressBar = root.findViewById(R.id.speedTestProgressBar);
         return root;
     }
 
@@ -57,7 +60,7 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
             public void run() {
                 if (result == "Error") {
                     errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.failed));
-                    btnStartTest.setEnabled(true);
+                    endLoading();
                     return;
                 }
                 if (download == "") {
@@ -69,7 +72,7 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
                     txtUpload.setText(upload);
                     download = "";
                     upload = "";
-                    btnStartTest.setEnabled(true);
+                    endLoading();
                 }
             }
         });
@@ -83,7 +86,7 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
         }
         txtDownload.setText("...");
         txtUpload.setText("...");
-        btnStartTest.setEnabled(false);
+        startLoading();
         getDownloadSpeed();
     }
 
@@ -102,6 +105,19 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
                 getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityService.getActiveNetworkInfo();
         return null != networkInfo && networkInfo.isConnected();
+    }
+
+    private void endLoading() {
+        btnStartTest.setEnabled(true);
+        progressBar.setVisibility(View.GONE);
+        btnStartTest.setBackgroundResource(R.drawable.rounded_button);
+
+    }
+
+    private void startLoading() {
+        btnStartTest.setEnabled(false);
+        btnStartTest.setBackgroundResource(R.drawable.disabled_rounded_button);
+        progressBar.setVisibility(View.VISIBLE);
     }
 }
 
