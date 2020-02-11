@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import ch.jll.nat_speedtest.R;
+import ch.jll.nat_speedtest.speedtest.Ping;
 import ch.jll.nat_speedtest.speedtest.SpeedTest;
 import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
 import ch.jll.nat_speedtest.ui.errorDialog.ErrorDialog;
@@ -31,6 +32,7 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     private String upload = "";
     private TextView txtDownload;
     private TextView txtUpload;
+    private TextView txtPing;
     private ErrorDialog errorDialog = new ErrorDialog();
     private ProgressBar progressBar;
 
@@ -41,6 +43,7 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
         btnStartTest.setOnClickListener(this);
         txtDownload = root.findViewById(R.id.maxMobileDownload);
         txtUpload = root.findViewById(R.id.maxMobileUpload);
+        txtPing = root.findViewById(R.id.ping);
         progressBar = root.findViewById(R.id.speedTestProgressBar);
         return root;
     }
@@ -55,6 +58,10 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     public void speedTestResult(final String result) {
         getActivity().runOnUiThread(new Runnable() {
             public void run() {
+                if(result.contains("ping:")) {
+                    txtPing.setText(result.replace("ping:", ""));
+                    return;
+                }
                 if (result == "Error") {
                     errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.failed));
                     endLoading();
@@ -83,8 +90,10 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
         }
         txtDownload.setText("...");
         txtUpload.setText("...");
+        txtPing.setText("...");
         startLoading();
         getDownloadSpeed();
+        getPing();
     }
 
     private void getDownloadSpeed() {
@@ -95,6 +104,11 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     private void getUploadSpeed() {
         SpeedTest speedtest = new SpeedTest(this);
         speedtest.execute("Up");
+    }
+
+    private void getPing() {
+        Ping ping = new Ping(this);
+        ping.execute();
     }
 
     private boolean isNetworkConnectionAvailable() {
