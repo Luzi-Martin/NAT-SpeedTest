@@ -73,11 +73,6 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
             BandWithTest bandWithTest = new BandWithTest(zipCode, city, street, houseNumber, this);
             startLoading();
             bandWithTest.execute();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         } else {
             errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message_emptyInput));
         }
