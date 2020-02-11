@@ -33,7 +33,6 @@ import ch.jll.nat_speedtest.ui.errorDialog.ErrorDialog;
 
 import java.io.IOException;
 
-
 public class BandwithTestFragment extends Fragment implements View.OnClickListener, SpeedTestCallback {
 
     private BandwithTestViewModel bandwithTestViewModel;
