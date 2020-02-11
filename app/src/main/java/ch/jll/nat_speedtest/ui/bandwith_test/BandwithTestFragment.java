@@ -2,7 +2,11 @@ package ch.jll.nat_speedtest.ui.bandwith_test;
 import ch.jll.nat_speedtest.R;
 import ch.jll.nat_speedtest.speedtest.BandWithTest;
 import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
+import ch.jll.nat_speedtest.ui.errorDialog.ErrorDialog;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +25,10 @@ import org.json.JSONObject;
 
 public class BandwithTestFragment extends Fragment implements View.OnClickListener, SpeedTestCallback {
 
+    private BandwithTestViewModel bandwithTestViewModel;
+    ErrorDialog errorDialog = new ErrorDialog();
+
+
     //Diese Funktion wird ausgeführt, sobald man die View anspricht.
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +43,10 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
     //Wenn der Button geklickt wird, wird der folgende Code ausgeführt.
     @Override
     public void onClick(View v) {
+        if(!isNetworkConnectionAvailable()) {
+            errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message));
+            return;
+        }
         //Die Daten aus der Form kriegen
         resetOutput();
         String zipCode, city, street, houseNumber;
@@ -52,6 +64,8 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        } else {
+            errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message_emptyInput));
         }
     }
 
@@ -73,13 +87,20 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
                         JSONObject broadBandInfo = new JSONObject(jsonObj.getJSONObject("broadbandInfo").toString());
                         uploadText.setText(String.format("%s", broadBandInfo.getString("maxUpSpeed")));
                         downloadText.setText(String.format("%s", broadBandInfo.getString("maxDownSpeed")));
-                    }else{ downloadText.setText(R.string.noAdress); }
+                    }else{ errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message_noAdress)); }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 System.out.println(result);
             }
         });
+    }
+
+    private boolean isNetworkConnectionAvailable() {
+        ConnectivityManager connectivityService = (ConnectivityManager)
+                getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityService.getActiveNetworkInfo();
+        return null != networkInfo && networkInfo.isConnected();
     }
 
 

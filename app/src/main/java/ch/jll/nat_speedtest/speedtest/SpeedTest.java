@@ -39,7 +39,6 @@ public class SpeedTest extends AsyncTask<String, Void, Object> {
             @Override
             public void onError(SpeedTestError speedTestError, String errorMessage) {
                 // called when a download/upload error occur
-
                 callback.speedTestResult("Error");
             }
 
