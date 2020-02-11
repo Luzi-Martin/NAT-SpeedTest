@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import ch.jll.nat_speedtest.R;
 
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
