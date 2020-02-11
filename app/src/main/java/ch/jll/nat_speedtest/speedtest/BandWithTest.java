@@ -72,9 +72,6 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             osw.flush();
             osw.close();
 
-            int status = urlConnection.getResponseCode();
-            Log.e("status", "" + status);
-
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             readStream(in);
 

@@ -1,12 +1,8 @@
 package ch.jll.nat_speedtest.speedtest;
 
 import android.os.AsyncTask;
-import android.view.View;
-import android.widget.TextView;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
 import fr.bmartel.speedtest.SpeedTestReport;
 import fr.bmartel.speedtest.SpeedTestSocket;
 import fr.bmartel.speedtest.inter.ISpeedTestListener;
@@ -78,7 +74,6 @@ public class SpeedTest extends AsyncTask<String, Void, Object> {
             speedTestSocket.startDownload("http://ipv4.ikoula.testdebit.info/10M.iso");
         } else {
             speedTestSocket.startUpload("http://ipv4.ikoula.testdebit.info/", 1000000);
-
         }
         return null;
     }
