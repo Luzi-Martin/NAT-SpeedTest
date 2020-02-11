@@ -20,9 +20,9 @@
     <string name="noResults">...</string>
     <string name="noAdress">Adresse nicht gefunden</string>
     <string name="error">Error</string>
-    <string name="error_message">"Keine Internetverbindung: Verbinden Sie sich bitte mit dem Internet."</string>
+    <string name="error_message">"Keine Internetverbindung: Verbinden Sie sich Bitte mit dem Internet."</string>
     <string name="failed">Test ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.</string>
     <string name="mobile_test_desc">Mit einem Klick auf den blauen Knopf können Sie ihre aktuelle Internetgeschwindigkeit messen.</string>
     <string name="bandWith_test_desc">Mit einem Klick auf den blauen Knopf können Sie die Bandbreite ihres Hauses oder dessen ihres Freundes herausfinden.\nGeben Sie dazu die gewünschte Adresse ein und starten Sie den Test.</string>
-
+    <string name="error_message_noAdress">Die angegebene Adresse konnte nicht gefunden werden. Bitte versuchen Sie es nochmal.</string>
 </resources>

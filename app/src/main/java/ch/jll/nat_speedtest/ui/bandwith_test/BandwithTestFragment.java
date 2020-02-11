@@ -1,6 +1,9 @@
 package ch.jll.nat_speedtest.ui.bandwith_test;
 import ch.jll.nat_speedtest.R;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.Log;
@@ -26,6 +29,8 @@ import java.io.IOException;
 import ch.jll.nat_speedtest.R;
 import ch.jll.nat_speedtest.speedtest.BandWithTest;
 import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
+import ch.jll.nat_speedtest.ui.errorDialog.ErrorDialog;
+
 import java.io.IOException;
 
 
@@ -33,6 +38,7 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
 
     private BandwithTestViewModel bandwithTestViewModel;
     private Button btnStartTest;
+    ErrorDialog errorDialog = new ErrorDialog();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -49,6 +55,10 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        if(!isNetworkConnectionAvailable()) {
+            errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message));
+            return;
+        }
         TextView upText = getView().findViewById(R.id.bwUploadSpeed);
         TextView downText = getView().findViewById(R.id.bwDownloadSpeed);
         upText.setText("");
@@ -87,12 +97,19 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
                         JSONObject broadBandInfo = new JSONObject(jsonObj.getJSONObject("broadbandInfo").toString());
                         uploadText.setText(String.format("%s", broadBandInfo.getString("maxUpSpeed")));
                         downloadText.setText(String.format("%s", broadBandInfo.getString("maxDownSpeed")));
-                    }else{ downloadText.setText(R.string.noAdress); }
+                    }else{ errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message_noAdress)); }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 System.out.println(result);
             }
         });
+    }
+
+    private boolean isNetworkConnectionAvailable() {
+        ConnectivityManager connectivityService = (ConnectivityManager)
+                getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityService.getActiveNetworkInfo();
+        return null != networkInfo && networkInfo.isConnected();
     }
 }
