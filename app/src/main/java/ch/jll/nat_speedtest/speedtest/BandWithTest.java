@@ -2,6 +2,7 @@ package ch.jll.nat_speedtest.speedtest;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -18,14 +19,14 @@ import java.net.URL;
 public class BandWithTest extends AsyncTask<String, Void, Object> {
     private String zipCode, city, street, houseNumber;
     private SpeedTestCallback callback;
-    final private String swisscomUrl= "https://www.swisscom.ch/map-api/onlinenslg/lineinfo";
+    final private String swisscomUrl = "https://www.swisscom.ch/map-api/onlinenslg/lineinfo";
 
 
-    public BandWithTest(String zipCode, String city, String street, String houseNumber, SpeedTestCallback callback ){
+    public BandWithTest(String zipCode, String city, String street, String houseNumber, SpeedTestCallback callback) {
         this.zipCode = zipCode;
         this.city = city;
         this.street = street;
-        this.houseNumber= houseNumber;
+        this.houseNumber = houseNumber;
         this.callback = callback;
     }
 

@@ -1,6 +1,5 @@
 package ch.jll.nat_speedtest.speedtest;
 
-
 /**
  *
  * The Callback Interface

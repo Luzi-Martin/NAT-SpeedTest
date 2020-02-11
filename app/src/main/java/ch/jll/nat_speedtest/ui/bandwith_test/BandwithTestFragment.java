@@ -1,4 +1,5 @@
 package ch.jll.nat_speedtest.ui.bandwith_test;
+
 import ch.jll.nat_speedtest.R;
 import ch.jll.nat_speedtest.speedtest.BandWithTest;
 import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
@@ -32,6 +33,7 @@ import java.io.IOException;
 import ch.jll.nat_speedtest.R;
 import ch.jll.nat_speedtest.speedtest.BandWithTest;
 import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
+
 import java.io.IOException;
 
 
@@ -55,7 +57,7 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if(!isNetworkConnectionAvailable()) {
+        if (!isNetworkConnectionAvailable()) {
             errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message));
             return;
         }
@@ -67,7 +69,7 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
         houseNumber = getHouseNumber();
 
         //Überprüfen, dass auch alle eingaben nicht leer sind.
-        if(!zipCode.equals("") && !city.equals("") && !street.equals("") && !houseNumber.equals("")){
+        if (!zipCode.equals("") && !city.equals("") && !street.equals("") && !houseNumber.equals("")) {
             BandWithTest bandWithTest = new BandWithTest(zipCode, city, street, houseNumber, this);
             bandWithTest.execute();
             try {
@@ -93,11 +95,13 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
                 TextView downloadText = getView().findViewById(R.id.bwDownloadSpeed);
                 try {
                     JSONObject jsonObj = new JSONObject(result);
-                    if(!jsonObj.isNull("broadbandInfo")){
+                    if (!jsonObj.isNull("broadbandInfo")) {
                         JSONObject broadBandInfo = new JSONObject(jsonObj.getJSONObject("broadbandInfo").toString());
                         uploadText.setText(String.format("%s", broadBandInfo.getString("maxUpSpeed")));
                         downloadText.setText(String.format("%s", broadBandInfo.getString("maxDownSpeed")));
-                    }else{ errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message_noAdress)); }
+                    } else {
+                        errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message_noAdress));
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -115,16 +119,52 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
 
 
     //Getter und Setter für die Form
-    private String getZipCode(){ EditText plzEdit = getView().findViewById(R.id.inputPlz); return plzEdit.getText().toString(); }
-    private String getCity(){ EditText cityEdit = getView().findViewById(R.id.inputPlace); return cityEdit.getText().toString(); }
-    private String getStreet(){ EditText streetEdit = getView().findViewById(R.id.inputStreet); return streetEdit.getText().toString(); }
-    private String getHouseNumber(){ EditText numberEdit = getView().findViewById(R.id.inputHouseNumber); return numberEdit.getText().toString(); }
-    private void setZipCode(String zipCode){ EditText plzEdit = getView().findViewById(R.id.inputPlz); plzEdit.setText(zipCode); }
-    private void setCity(String city){ EditText plzEdit = getView().findViewById(R.id.inputPlace); plzEdit.setText(city); }
-    private void setStreet(String street){ EditText plzEdit = getView().findViewById(R.id.inputStreet); plzEdit.setText(street); }
-    private void setHouseNumber(String houseNumber){ EditText plzEdit = getView().findViewById(R.id.inputHouseNumber); plzEdit.setText(houseNumber); }
+    private String getZipCode() {
+        EditText plzEdit = getView().findViewById(R.id.inputPlz);
+        return plzEdit.getText().toString();
+    }
+
+    private String getCity() {
+        EditText cityEdit = getView().findViewById(R.id.inputPlace);
+        return cityEdit.getText().toString();
+    }
+
+    private String getStreet() {
+        EditText streetEdit = getView().findViewById(R.id.inputStreet);
+        return streetEdit.getText().toString();
+    }
+
+    private String getHouseNumber() {
+        EditText numberEdit = getView().findViewById(R.id.inputHouseNumber);
+        return numberEdit.getText().toString();
+    }
+
+    private void setZipCode(String zipCode) {
+        EditText plzEdit = getView().findViewById(R.id.inputPlz);
+        plzEdit.setText(zipCode);
+    }
+
+    private void setCity(String city) {
+        EditText plzEdit = getView().findViewById(R.id.inputPlace);
+        plzEdit.setText(city);
+    }
+
+    private void setStreet(String street) {
+        EditText plzEdit = getView().findViewById(R.id.inputStreet);
+        plzEdit.setText(street);
+    }
+
+    private void setHouseNumber(String houseNumber) {
+        EditText plzEdit = getView().findViewById(R.id.inputHouseNumber);
+        plzEdit.setText(houseNumber);
+    }
 
     //Damit resettet man die zwei Outputs für die Up-/Downloadraten
-    private void resetOutput(){ TextView upText = getView().findViewById(R.id.bwUploadSpeed);TextView downText = getView().findViewById(R.id.bwDownloadSpeed); upText.setText("..."); downText.setText("..."); }
+    private void resetOutput() {
+        TextView upText = getView().findViewById(R.id.bwUploadSpeed);
+        TextView downText = getView().findViewById(R.id.bwDownloadSpeed);
+        upText.setText("...");
+        downText.setText("...");
+    }
 
 }

@@ -48,21 +48,22 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     /**
      * Inherited from SpeedTestCallback
      * gets called from SpeedTest to transmit its Data
+     *
      * @param result data from SpeedTest
      */
     @Override
     public void speedTestResult(final String result) {
         getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                if(result == "Error") {
-                    errorDialog.showAlertDialog(getContext(),getResources().getString(R.string.failed));
+                if (result == "Error") {
+                    errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.failed));
                     btnStartTest.setEnabled(true);
                     return;
                 }
-                if(download == "") {
+                if (download == "") {
                     download = result + " Mbit/s";
                     getUploadSpeed();
-                } else if (upload == ""){
+                } else if (upload == "") {
                     upload = result + " Mbit/s";
                     txtDownload.setText(download);
                     txtUpload.setText(upload);
@@ -76,7 +77,7 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
 
     @Override
     public void onClick(View v) {
-        if(!isNetworkConnectionAvailable()) {
+        if (!isNetworkConnectionAvailable()) {
             errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message));
             return;
         }

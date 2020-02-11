@@ -22,13 +22,12 @@ public class SpeedTest extends AsyncTask<String, Void, Object> {
      * It comes with the SpeedTestSocket Class and
      * three Listeners: onCompletion, onError and onProgress.     *
      * We also the Methods startDownload and startUpload of the SpeedTestSccket class.
-     *
      */
 
     private SpeedTestSocket speedTestSocket = new SpeedTestSocket();
 
     /**
-     *Contains an Object(implements SpeedTestCallback) to pass the SpeedTest's Data
+     * Contains an Object(implements SpeedTestCallback) to pass the SpeedTest's Data
      */
     private SpeedTestCallback callback;
 
@@ -42,6 +41,7 @@ public class SpeedTest extends AsyncTask<String, Void, Object> {
     /**
      * the doInBackground Method gets inheritet from the AsyncTask class
      * it performs it's actions on a second thread
+     *
      * @param strings
      * @return
      */
@@ -74,7 +74,7 @@ public class SpeedTest extends AsyncTask<String, Void, Object> {
          *
          * Performing the Requests, which responses get caught by the Listeners above.
          */
-        if(strings[0] == "Down") {
+        if (strings[0] == "Down") {
             speedTestSocket.startDownload("http://ipv4.ikoula.testdebit.info/10M.iso");
         } else {
             speedTestSocket.startUpload("http://ipv4.ikoula.testdebit.info/", 1000000);
