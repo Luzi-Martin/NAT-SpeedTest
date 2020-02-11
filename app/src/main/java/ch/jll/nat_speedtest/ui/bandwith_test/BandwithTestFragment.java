@@ -49,8 +49,7 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        bandwithTestViewModel =
-                ViewModelProviders.of(this).get(BandwithTestViewModel.class);
+        bandwithTestViewModel = ViewModelProviders.of(this).get(BandwithTestViewModel.class);
         View root = inflater.inflate(R.layout.fragment_bandwithtest, container, false);
         btnStartTest = root.findViewById(R.id.btnStart);
         btnStartTest.setOnClickListener(this);

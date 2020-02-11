@@ -47,7 +47,6 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
         return root;
     }
 
-
     /**
      * Inherited from SpeedTestCallback
      * gets called from SpeedTest to transmit its Data
