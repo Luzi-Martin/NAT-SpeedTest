@@ -56,10 +56,10 @@
     <Button
         android:id="@+id/btnStartMobileTest"
         android:layout_width="0dp"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="47dp"
         android:background="@drawable/rounded_button"
         android:radius="100dp"
         android:text="@string/start_test"
