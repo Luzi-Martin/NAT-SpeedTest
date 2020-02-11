@@ -2,8 +2,6 @@ package ch.jll.nat_speedtest.speedtest;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
-
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -18,6 +16,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BandWithTest extends AsyncTask<String, Void, Object> {
+    private String response;
+    private String zipCode, city, street, houseNumber;
+    SpeedTestCallback callback;
+    public BandWithTest(String zipCode, String city, String street, String houseNumber, SpeedTestCallback callback ){ this.zipCode = zipCode; this.city = city; this.street = street; this.houseNumber= houseNumber; this.callback = callback; }
 
     @Override
     protected Object doInBackground(String... strings) {
@@ -25,10 +27,10 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         JSONObject JsonData = new JSONObject();
 
         try {
-            address.put("zipCode4", 2513);
-            address.put("city", "Twann");
-            address.put("street", "Moos");
-            address.put("houseNumber", "17");
+            address.put("zipCode4", this.zipCode);
+            address.put("city", this.city);
+            address.put("street", this.street);
+            address.put("houseNumber", this.houseNumber);
             JsonData.put("language", "de");
             JsonData.put("address", address);
         } catch (Exception e) {
@@ -80,13 +82,10 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         return null;
     }
 
-    private void readStream(InputStream in) {
+    public void readStream(InputStream in) {
         BufferedReader br = new BufferedReader(new InputStreamReader((in)));
         try {
-            String line = null;
-            while((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
+            callback.speedTestResult(br.readLine());
             br.close();
 
         } catch (Exception e) {

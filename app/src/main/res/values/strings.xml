@@ -18,6 +18,7 @@
     <string name="max_download">Max. Download:</string>
     <string name="max_upload">Max. Upload:</string>
     <string name="noResults">...</string>
+    <string name="noAdress">Adresse nicht gefunden</string>
     <string name="error">Error</string>
     <string name="error_message">"Keine Internetverbindung: Verbinden Sie sich bitte mit dem Internet."</string>
     <string name="failed">Test ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.</string>
