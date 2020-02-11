@@ -45,8 +45,6 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
     private ErrorDialog errorDialog = new ErrorDialog();
     private ProgressBar progressBar;
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         bandwithTestViewModel = ViewModelProviders.of(this).get(BandwithTestViewModel.class);
@@ -56,7 +54,6 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
         progressBar = root.findViewById(R.id.bandWithProgressBar);
         return root;
     }
-
 
     @Override
     public void onClick(View v) {
@@ -120,7 +117,6 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
         NetworkInfo networkInfo = connectivityService.getActiveNetworkInfo();
         return null != networkInfo && networkInfo.isConnected();
     }
-
 
     //Getter und Setter für die Form
     private String getZipCode() {

@@ -10,16 +10,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-
 import ch.jll.nat_speedtest.R;
 import ch.jll.nat_speedtest.speedtest.Ping;
 import ch.jll.nat_speedtest.speedtest.SpeedTest;
 import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
 import ch.jll.nat_speedtest.ui.errorDialog.ErrorDialog;
+
 
 /**
  * Implements SpeedTestCallback to get the Callback of the SpeedTest
@@ -36,7 +35,6 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     private TextView txtPing;
     private ErrorDialog errorDialog = new ErrorDialog();
     private ProgressBar progressBar;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mobileViewModel = ViewModelProviders.of(this).get(MobileViewModel.class);
@@ -124,7 +122,6 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
         btnStartTest.setEnabled(true);
         progressBar.setVisibility(View.GONE);
         btnStartTest.setBackgroundResource(R.drawable.rounded_button);
-
     }
 
     private void startLoading() {

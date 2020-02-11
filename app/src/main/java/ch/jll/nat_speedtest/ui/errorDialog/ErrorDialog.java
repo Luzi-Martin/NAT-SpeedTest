@@ -2,9 +2,7 @@ package ch.jll.nat_speedtest.ui.errorDialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
-
 import androidx.appcompat.app.AlertDialog;
-
 import ch.jll.nat_speedtest.R;
 
 
