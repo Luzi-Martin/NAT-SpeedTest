@@ -76,6 +76,8 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        } else {
+            errorDialog.showAlertDialog(getContext(), getResources().getString(R.string.error_message_emptyInput));
         }
     }
 
