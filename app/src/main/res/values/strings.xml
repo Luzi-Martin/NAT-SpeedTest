@@ -28,6 +28,5 @@
     <string name="error_message_emptyInput">Sie haben nicht alle Felder ausgefüllt. Bitte füllen Sie alle Felder aus.</string>
     <string name="imageDesc">Das ist ein Bild von einem Tachometer</string>
     <string name="ping">Ping:</string>
-    <string name="imageDesc">Das ist ein Bild von einem Tachometer</string>
 
 </resources>
