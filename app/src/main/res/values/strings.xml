@@ -5,7 +5,7 @@
     <string name="title_home">Home</string>
     <string name="title_location">Heim-Bandbreite</string>
     <string name="subtitle_home">Unsere Speedtest</string>
-    <string name="home_description">Diese App wurde aus 3 Lernenden erstellt:\nJigme, Lani und Luzi</string>
+    <string name="home_description">Diese App wurde von 3 Lernenden erstellt:\nJigme, Lani und Luzi</string>
     <string name="home_mobile_description">Unser schneller Speedtest für unterwegs, schau schnell nach, wie gut dein Internet ist und überzeuge dich selbst!</string>
     <string name="home_location_description">Du willst wissen, wie gut die Leitung in deinem zu Hause, oder in der Wohnung deines Freundes ist?\nDas geht hier ganz einfach!</string>
     <string name="location_whatPlace">Für welche Adresse willst du einen Speedtest durchführen?</string>
@@ -20,8 +20,8 @@
     <string name="noResults">...</string>
     <string name="noAdress">Adresse nicht gefunden</string>
     <string name="error">Error</string>
-    <string name="error_message">"Keine Internetverbindung: Verbinden Sie sich Bitte mit dem Internet."</string>
-    <string name="failed">Test ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.</string>
+    <string name="error_message">"Keine Internetverbindung: Verbinden Sie sich bitte mit dem Internet."</string>
+    <string name="failed">Der Test ist fehlgeschlagen. Bitte versuchen Sie es später nochmal.</string>
     <string name="mobile_test_desc">Mit einem Klick auf den blauen Knopf können Sie ihre aktuelle Internetgeschwindigkeit messen.</string>
     <string name="bandWith_test_desc">Mit einem Klick auf den blauen Knopf können Sie die Bandbreite ihres Hauses oder dessen ihres Freundes herausfinden.\nGeben Sie dazu die gewünschte Adresse ein und starten Sie den Test.</string>
     <string name="error_message_noAdress">Die angegebene Adresse konnte nicht gefunden werden. Bitte versuchen Sie es nochmal.</string>
