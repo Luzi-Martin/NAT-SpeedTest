@@ -27,5 +27,6 @@
     <string name="error_message_noAdress">Die angegebene Adresse konnte nicht gefunden werden. Bitte versuchen Sie es nochmal.</string>
     <string name="error_message_emptyInput">Sie haben nicht alle Felder ausgefüllt. Bitte füllen Sie alle Felder aus.</string>
     <string name="ping">Ping:</string>
+    <string name="imageDesc">Das ist ein Bild von einem Tachometer</string>
 
 </resources>
