@@ -40,8 +40,7 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
         bandwithTestViewModel =
                 ViewModelProviders.of(this).get(BandwithTestViewModel.class);
         View root = inflater.inflate(R.layout.fragment_bandwithtest, container, false);
-        final Button button = root.findViewById(R.id.btnStart);
-        btnStartTest = button;
+        btnStartTest = root.findViewById(R.id.btnStart);
         btnStartTest.setOnClickListener(this);
         return root;
     }
@@ -49,10 +48,10 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        TextView upText = getView().findViewById(R.id.bwUploadSpeed);
-        TextView downText = getView().findViewById(R.id.bwDownloadSpeed);
-        upText.setText("");
-        downText.setText("");
+        TextView uploadText = getView().findViewById(R.id.bwUploadSpeed);
+        TextView downloadText = getView().findViewById(R.id.bwDownloadSpeed);
+        uploadText.setText("");
+        downloadText.setText("");
         String zipCode, city, street, houseNumber;
         zipCode = getZipCode();
         city = getCity();

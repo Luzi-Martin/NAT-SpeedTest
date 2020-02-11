@@ -19,6 +19,9 @@ import ch.jll.nat_speedtest.speedtest.SpeedTest;
 import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
 import ch.jll.nat_speedtest.ui.errorDialog.ErrorDialog;
 
+/**
+ * Implements SpeedTestCallback to get the Callback of the SpeedTest
+ */
 public class MobileTestFragment extends Fragment implements SpeedTestCallback, View.OnClickListener {
 
     private MobileViewModel mobileViewModel;
@@ -28,7 +31,7 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     private String upload = "";
     private TextView txtDownload;
     private TextView txtUpload;
-    ErrorDialog errorDialog = new ErrorDialog();
+    private ErrorDialog errorDialog = new ErrorDialog();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,14 +39,17 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
         root = inflater.inflate(R.layout.fragment_mobiletest, container, false);
         btnStartTest = root.findViewById(R.id.btnStartMobileTest);
         btnStartTest.setOnClickListener(this);
-
         txtDownload = root.findViewById(R.id.maxMobileDownload);
         txtUpload = root.findViewById(R.id.maxMobileUpload);
-
         return root;
     }
 
 
+    /**
+     * Inherited from SpeedTestCallback
+     * gets called from SpeedTest to transmit its Data
+     * @param result data from SpeedTest
+     */
     @Override
     public void speedTestResult(final String result) {
         getActivity().runOnUiThread(new Runnable() {
@@ -66,7 +72,6 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
                 }
             }
         });
-
     }
 
     @Override
@@ -77,7 +82,6 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
         }
         txtDownload.setText("...");
         txtUpload.setText("...");
-
         btnStartTest.setEnabled(false);
         getDownloadSpeed();
     }

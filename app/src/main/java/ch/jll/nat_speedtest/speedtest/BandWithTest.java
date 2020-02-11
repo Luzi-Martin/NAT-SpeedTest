@@ -16,28 +16,34 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BandWithTest extends AsyncTask<String, Void, Object> {
-    private String response;
     private String zipCode, city, street, houseNumber;
-    SpeedTestCallback callback;
-    public BandWithTest(String zipCode, String city, String street, String houseNumber, SpeedTestCallback callback ){ this.zipCode = zipCode; this.city = city; this.street = street; this.houseNumber= houseNumber; this.callback = callback; }
+    private SpeedTestCallback callback;
+    final private String swisscomUrl= "https://www.swisscom.ch/map-api/onlinenslg/lineinfo";
+
+
+    public BandWithTest(String zipCode, String city, String street, String houseNumber, SpeedTestCallback callback ){
+        this.zipCode = zipCode;
+        this.city = city;
+        this.street = street;
+        this.houseNumber= houseNumber;
+        this.callback = callback;
+    }
 
     @Override
     protected Object doInBackground(String... strings) {
         JSONObject address = new JSONObject();
-        JSONObject JsonData = new JSONObject();
+        JSONObject inputJson = new JSONObject();
 
         try {
             address.put("zipCode4", this.zipCode);
             address.put("city", this.city);
             address.put("street", this.street);
             address.put("houseNumber", this.houseNumber);
-            JsonData.put("language", "de");
-            JsonData.put("address", address);
+            inputJson.put("language", "de");
+            inputJson.put("address", address);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("asdfasdf");
         }
-        final String swisscomUrl= "https://www.swisscom.ch/map-api/onlinenslg/lineinfo";
 
         URL url = null;
         try {
@@ -61,7 +67,7 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             OutputStream os = urlConnection.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
 
-            osw.write(JsonData.toString());
+            osw.write(inputJson.toString());
             osw.flush();
             osw.close();
 
@@ -87,9 +93,8 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         try {
             callback.speedTestResult(br.readLine());
             br.close();
-
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
     }
 
