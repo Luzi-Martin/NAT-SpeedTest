@@ -116,7 +116,7 @@
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:hint="@string/location_nummer"
-            android:inputType="numberSigned"
+            android:inputType="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
