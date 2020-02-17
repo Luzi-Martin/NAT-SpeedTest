@@ -112,7 +112,7 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             osw.close();
 
             /**
-             * open InputStream to the Connection
+             * open InputStream to the Connection for the Response
              */
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             /**
