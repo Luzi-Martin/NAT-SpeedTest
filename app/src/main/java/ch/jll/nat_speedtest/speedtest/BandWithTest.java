@@ -32,10 +32,12 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
 
     @Override
     protected Object doInBackground(String... strings) {
+        //Zwei leere JSON-Objekte, die wir für den POST Request benutzen
         JSONObject address = new JSONObject();
         JSONObject inputJson = new JSONObject();
 
         try {
+            //Daten in die JSON-Objekte einfügen
             address.put("zipCode4", this.zipCode);
             address.put("city", this.city);
             address.put("street", this.street);
@@ -43,6 +45,7 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             inputJson.put("language", "de");
             inputJson.put("address", address);
         } catch (Exception e) {
+            //Errors catchen
             System.out.println(e.getMessage());
         }
 
@@ -55,11 +58,13 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
 
         HttpURLConnection urlConnection = null;
         try {
+            //Die Verbindung zur SwissomUrl öffnen
             urlConnection = (HttpURLConnection) url.openConnection();
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
+            //Voreinstellungen einstellen
             urlConnection.setDoInput(true);
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/json");
@@ -72,9 +77,10 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             osw.flush();
             osw.close();
 
+            //Inputstream initialisieren für die Antwort vom Swisscom-Server
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             readStream(in);
-
+            //Repsonse Message (OK, Forbidden, No Connection usw) und Reponse Code (200, 404, 500) werden hier auf der Konsole ausgegeben
             Log.e("msg", urlConnection.getResponseMessage());
             Log.e("code", "" + urlConnection.getResponseCode());
 
@@ -86,6 +92,7 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         return null;
     }
 
+    //Response vom Swisscom-Server auslesen und abspeichern
     public void readStream(InputStream in) {
         BufferedReader br = new BufferedReader(new InputStreamReader((in)));
         try {
