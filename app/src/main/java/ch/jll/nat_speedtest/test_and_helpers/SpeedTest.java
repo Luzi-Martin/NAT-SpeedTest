@@ -78,3 +78,26 @@ public class SpeedTest extends AsyncTask<String, Void, Object> {
         return null;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Abgabe
