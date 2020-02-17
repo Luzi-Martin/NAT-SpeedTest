@@ -17,12 +17,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-
+/**
+ * Inheriting from the Async Class.
+ * In order to perform requests, we need to use the AsyncTask Class respectively the doInBackground Method
+ */
 public class BandWithTest extends AsyncTask<String, Void, Object> {
     private String zipCode, city, street, houseNumber;
+    /**
+     * Contains an Object which implements SpeedTestCallback to pass the BandWithTest's Data
+     */
     private SpeedTestCallback callback;
     final private String swisscomUrl = "https://www.swisscom.ch/map-api/onlinenslg/lineinfo";
 
+    /**
+     * @param callback the Object to pass the BandWithTest's Data
+     */
     public BandWithTest(String zipCode, String city, String street, String houseNumber, SpeedTestCallback callback) {
         this.zipCode = zipCode;
         this.city = city;
@@ -31,14 +40,22 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         this.callback = callback;
     }
 
+    /**
+     * the doInBackground Method gets inheritet from the AsyncTask class
+     * it performs it's actions on a second thread
+     *
+     * @param strings
+     * @return it returns null, because transmitt our data otherwhise
+     */
     @Override
     protected Object doInBackground(String... strings) {
-        //Zwei leere JSON-Objekte, die wir für den POST Request benutzen
+        /**
+         * create the Json's for the Post-Request-Body
+         */
         JSONObject address = new JSONObject();
         JSONObject inputJson = new JSONObject();
 
         try {
-            //Daten in die JSON-Objekte einfügen
             address.put("zipCode4", this.zipCode);
             address.put("city", this.city);
             address.put("street", this.street);
@@ -46,10 +63,13 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             inputJson.put("language", "de");
             inputJson.put("address", address);
         } catch (Exception e) {
-            //Errors catchen
             System.out.println(e.getMessage());
         }
 
+        /**
+         *
+         * Form new URL
+         */
         URL url = null;
         try {
             url = new URL(swisscomUrl);
@@ -57,31 +77,50 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             e.printStackTrace();
         }
 
+        /**
+         * create new HTTPURLConnection
+         */
         HttpURLConnection urlConnection = null;
         try {
-            //Die Verbindung zur SwissomUrl öffnen
             urlConnection = (HttpURLConnection) url.openConnection();
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            //Voreinstellungen einstellen
+            /**
+             * configure the Request
+             */
             urlConnection.setDoInput(true);
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/json");
 
+            /**
+             * connect to the outside endpoint respectively Swisscom-API
+             */
             urlConnection.connect(); // Note the connect() here
+            /**
+             * open OutPutStream to the Connenction
+             * create new OutputStreamWriter in order to access/edit the Request-Body
+             */
             OutputStream os = urlConnection.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os, StandardCharsets.UTF_8);
 
+            /**
+             * Write the Request Body
+             */
             osw.write(inputJson.toString());
             osw.flush();
             osw.close();
 
-            //Inputstream initialisieren für die Antwort vom Swisscom-Server
+            /**
+             * open InputStream to the Connection for the Response
+             */
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            /**
+             * read InputStream
+             */
             readStream(in);
-            //Repsonse Message (OK, Forbidden, No Connection usw) und Reponse Code (200, 404, 500) werden hier auf der Konsole ausgegeben
+
             Log.e("msg", urlConnection.getResponseMessage());
             Log.e("code", "" + urlConnection.getResponseCode());
 
@@ -93,8 +132,14 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         return null;
     }
 
-    //Response vom Swisscom-Server auslesen und abspeichern
+    /**
+     *
+     * @param in InputStream that will be read
+     */
     private void readStream(InputStream in) {
+        /**
+         * New BufferedReader in Order to get the Data out of the InputStream
+         */
         BufferedReader br = new BufferedReader(new InputStreamReader((in)));
         try {
             callback.speedTestResult(br.readLine());

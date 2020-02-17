@@ -10,7 +10,7 @@ import fr.bmartel.speedtest.model.SpeedTestError;
 
 /**
  * Inheriting from the Async Class.
- * In order to perform requests, we need to use the AsyncTask Class bzw. the doInBackground Method
+ * In order to perform requests, we need to use the AsyncTask Class respectively the doInBackground Method
  */
 public class SpeedTest extends AsyncTask<String, Void, Object> {
     /**
@@ -23,7 +23,7 @@ public class SpeedTest extends AsyncTask<String, Void, Object> {
     private SpeedTestSocket speedTestSocket = new SpeedTestSocket();
 
     /**
-     * Contains an Object(implements SpeedTestCallback) to pass the SpeedTest's Data
+     * Contains an Object which implements SpeedTestCallback to pass the SpeedTest's Data
      */
     private SpeedTestCallback callback;
 
@@ -39,7 +39,7 @@ public class SpeedTest extends AsyncTask<String, Void, Object> {
      * it performs it's actions on a second thread
      *
      * @param strings
-     * @return
+     * @return it returns null, because transmitt our data otherwhise
      */
     @Override
     protected String doInBackground(String... strings) {

@@ -57,8 +57,14 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
     @Override
     public void speedTestResult(final String result) {
         try {
+            /**
+             * In order to Run on main Thread again
+             */
             getActivity().runOnUiThread(new Runnable() {
                 public void run() {
+                    /**
+                     * Different Actions on Different SpeedTest Outputs
+                     */
                     if(result.contains("ping:")) {
                         txtPing.setText(result.replace("ping:", ""));
                         return;
@@ -123,12 +129,20 @@ public class MobileTestFragment extends Fragment implements SpeedTestCallback, V
         return null != networkInfo && networkInfo.isConnected();
     }
 
+    /**
+     * Stop Loading-Spinner
+     * Enable Button
+     */
     private void endLoading() {
         btnStartTest.setEnabled(true);
         progressBar.setVisibility(View.GONE);
         btnStartTest.setBackgroundResource(R.drawable.rounded_button);
     }
 
+    /**
+     * start Loading-Spinner
+     * Disable Button
+     */
     private void startLoading() {
         btnStartTest.setEnabled(false);
         btnStartTest.setBackgroundResource(R.drawable.disabled_rounded_button);

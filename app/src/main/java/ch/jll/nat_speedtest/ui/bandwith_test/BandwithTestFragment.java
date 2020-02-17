@@ -25,7 +25,9 @@ import androidx.lifecycle.ViewModelProviders;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
+/**
+ *  Implements SpeedTestCallback to get the Callback of the BandWithTest
+ */
 public class BandwithTestFragment extends Fragment implements View.OnClickListener, SpeedTestCallback {
 
     private BandwithTestViewModel bandwithTestViewModel;
@@ -56,7 +58,9 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
         street = getStreet();
         houseNumber = getHouseNumber();
 
-        //Überprüfen, dass auch alle eingaben nicht leer sind.
+        /**
+         * Validate Input on Emptiness
+         */
         if (!zipCode.equals("") && !city.equals("") && !street.equals("") && !houseNumber.equals("")) {
             BandWithTest bandWithTest = new BandWithTest(zipCode, city, street, houseNumber, this);
             startLoading();
@@ -66,13 +70,14 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
         }
     }
 
-    /*
-    Abstrakte Methode des SpeedTestCallback interfaces.
-    Hier wird die Response von unserem POST Request gehandelt.
-    Wir kriegen die Daten aus dem Interface, "zerstückeln" die Daten dann in kleine Happen und schreiben sie schlussendlich wieder in die Form rein
+    /**
+     * Overridden from SpeedTestCallback
      */
     @Override
     public void speedTestResult(final String result) {
+        /**
+         * In order to Run on main Thread again
+         */
         getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 endLoading();
@@ -81,6 +86,9 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
                 try {
                     JSONObject jsonObj = new JSONObject(result);
                     if (!jsonObj.isNull("broadbandInfo")) {
+                        /**
+                         * Get Data from JSON, format Data
+                         */
                         JSONObject broadBandInfo = new JSONObject(jsonObj.getJSONObject("broadbandInfo").toString());
                         uploadText.setText(String.format("%s", broadBandInfo.getString("maxUpSpeed")));
                         downloadText.setText(String.format("%s", broadBandInfo.getString("maxDownSpeed")));
@@ -101,7 +109,11 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
         return null != networkInfo && networkInfo.isConnected();
     }
 
-    //Getter und Setter für die Form
+    /**
+     * Getter for all EditText Elements in View
+     *
+     */
+
     private String getZipCode() {
         EditText plzEdit = getView().findViewById(R.id.inputPlz);
         return plzEdit.getText().toString();
@@ -122,7 +134,9 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
         return numberEdit.getText().toString();
     }
 
-    //Damit resettet man die zwei Outputs für die Up-/Downloadraten
+    /**
+     * In order to reset the two Textview Elements for the Down- and Upload-Rates
+     */
     private void resetOutput() {
         TextView upText = getView().findViewById(R.id.bwUploadSpeed);
         TextView downText = getView().findViewById(R.id.bwDownloadSpeed);
@@ -130,12 +144,20 @@ public class BandwithTestFragment extends Fragment implements View.OnClickListen
         downText.setText("...");
     }
 
+    /**
+     * Stop Loading-Spinner
+     * Enable Button
+     */
     private void endLoading() {
         btnStartTest.setEnabled(true);
         progressBar.setVisibility(View.GONE);
         btnStartTest.setBackgroundResource(R.drawable.rounded_button);
     }
 
+    /**
+     * start Loading-Spinner
+     * Disable Button
+     */
     private void startLoading() {
         btnStartTest.setEnabled(false);
         btnStartTest.setBackgroundResource(R.drawable.disabled_rounded_button);
