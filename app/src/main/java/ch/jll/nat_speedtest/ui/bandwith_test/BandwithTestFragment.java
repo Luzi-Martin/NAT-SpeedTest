@@ -1,16 +1,14 @@
 package ch.jll.nat_speedtest.ui.bandwith_test;
 
 import ch.jll.nat_speedtest.R;
-import ch.jll.nat_speedtest.speedtest.BandWithTest;
-import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
+import ch.jll.nat_speedtest.test_and_helpers.BandWithTest;
+import ch.jll.nat_speedtest.test_and_helpers.SpeedTestCallback;
 import ch.jll.nat_speedtest.ui.errorDialog.ErrorDialog;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.JsonReader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,23 +17,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-
-import ch.jll.nat_speedtest.R;
-import ch.jll.nat_speedtest.speedtest.BandWithTest;
-import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
-
-import java.io.IOException;
 
 
 public class BandwithTestFragment extends Fragment implements View.OnClickListener, SpeedTestCallback {
