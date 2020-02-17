@@ -16,12 +16,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
+/**
+ * Inheriting from the Async Class.
+ * In order to perform requests, we need to use the AsyncTask Class respectively the doInBackground Method
+ */
 public class BandWithTest extends AsyncTask<String, Void, Object> {
     private String zipCode, city, street, houseNumber;
+    /**
+     * Contains an Object which implements SpeedTestCallback to pass the BandWithTest's Data
+     */
     private SpeedTestCallback callback;
     final private String swisscomUrl = "https://www.swisscom.ch/map-api/onlinenslg/lineinfo";
 
+    /**
+     * @param callback the Object to pass the BandWithTest's Data
+     */
     public BandWithTest(String zipCode, String city, String street, String houseNumber, SpeedTestCallback callback) {
         this.zipCode = zipCode;
         this.city = city;
@@ -30,8 +39,18 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         this.callback = callback;
     }
 
+    /**
+     * the doInBackground Method gets inheritet from the AsyncTask class
+     * it performs it's actions on a second thread
+     *
+     * @param strings
+     * @return it returns null, because transmitt our data otherwhise
+     */
     @Override
     protected Object doInBackground(String... strings) {
+        /**
+         * create the Json's for the Post-Request-Body
+         */
         JSONObject address = new JSONObject();
         JSONObject inputJson = new JSONObject();
 
@@ -46,6 +65,10 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             System.out.println(e.getMessage());
         }
 
+        /**
+         *
+         * Form new URL
+         */
         URL url = null;
         try {
             url = new URL(swisscomUrl);
@@ -53,6 +76,9 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             e.printStackTrace();
         }
 
+        /**
+         * create new HTTPURLConnection
+         */
         HttpURLConnection urlConnection = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -60,19 +86,38 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
             e.printStackTrace();
         }
         try {
+            /**
+             * configure the Request
+             */
             urlConnection.setDoInput(true);
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/json");
 
+            /**
+             * connect to the outside endpoint respectively Swisscom-API
+             */
             urlConnection.connect(); // Note the connect() here
+            /**
+             * open OutPutStream to the Connenction
+             * create new OutputStreamWriter in order to access/edit the Request-Body
+             */
             OutputStream os = urlConnection.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
 
+            /**
+             * Write the Request Body
+             */
             osw.write(inputJson.toString());
             osw.flush();
             osw.close();
 
+            /**
+             * open InputStream to the Connection
+             */
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            /**
+             * read InputStream
+             */
             readStream(in);
 
             Log.e("msg", urlConnection.getResponseMessage());
@@ -86,7 +131,14 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
         return null;
     }
 
+    /**
+     *
+     * @param in InputStream that will be read
+     */
     public void readStream(InputStream in) {
+        /**
+         * New BufferedReader in Order to get the Data out of the InputStream
+         */
         BufferedReader br = new BufferedReader(new InputStreamReader((in)));
         try {
             callback.speedTestResult(br.readLine());

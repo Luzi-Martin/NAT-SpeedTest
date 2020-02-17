@@ -18,17 +18,32 @@ public class Ping extends AsyncTask<String, Void, Object> {
     @Override
     protected Object doInBackground(String... strings) {
         try {
+            /**
+             * Define Address and Port
+             */
             String hostAddress = "www.swisscom.com";
             int port = 80;
             long timeToRespond = 0;
 
+            /**
+             *  Get InternetAddress by Hostname,
+             *  Create new Socket on www.swisscom.com | 80
+             */
             InetAddress inetAddress = InetAddress.getByName(hostAddress);
             InetSocketAddress socketAddress = new InetSocketAddress(inetAddress, port);
 
+            /**
+             *  Open new Socketchannel (A selectable channel for stream-oriented connecting sockets.)
+             */
             SocketChannel sc = SocketChannel.open();
             sc.configureBlocking(true);
 
             Date start = new Date();
+
+            /**
+             * if connection of socketchannel on socketaddress works,
+             * calculate ResponseTime (Ping)
+             */
             if (sc.connect(socketAddress)) {
                 Date stop = new Date();
                 timeToRespond = (stop.getTime() - start.getTime());
