@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import ch.jll.nat_speedtest.R;
-import ch.jll.nat_speedtest.speedtest.Ping;
-import ch.jll.nat_speedtest.speedtest.SpeedTest;
-import ch.jll.nat_speedtest.speedtest.SpeedTestCallback;
+import ch.jll.nat_speedtest.test_and_helpers.Ping;
+import ch.jll.nat_speedtest.test_and_helpers.SpeedTest;
+import ch.jll.nat_speedtest.test_and_helpers.SpeedTestCallback;
 import ch.jll.nat_speedtest.ui.errorDialog.ErrorDialog;
 
 

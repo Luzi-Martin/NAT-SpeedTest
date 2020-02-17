@@ -1,4 +1,4 @@
-package ch.jll.nat_speedtest.speedtest;
+package ch.jll.nat_speedtest.test_and_helpers;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,6 +15,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 
 public class BandWithTest extends AsyncTask<String, Void, Object> {
@@ -71,7 +72,7 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
 
             urlConnection.connect(); // Note the connect() here
             OutputStream os = urlConnection.getOutputStream();
-            OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
+            OutputStreamWriter osw = new OutputStreamWriter(os, StandardCharsets.UTF_8);
 
             osw.write(inputJson.toString());
             osw.flush();
@@ -93,7 +94,7 @@ public class BandWithTest extends AsyncTask<String, Void, Object> {
     }
 
     //Response vom Swisscom-Server auslesen und abspeichern
-    public void readStream(InputStream in) {
+    private void readStream(InputStream in) {
         BufferedReader br = new BufferedReader(new InputStreamReader((in)));
         try {
             callback.speedTestResult(br.readLine());

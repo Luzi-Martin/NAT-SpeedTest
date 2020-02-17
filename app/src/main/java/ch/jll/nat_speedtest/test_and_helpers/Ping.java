@@ -1,4 +1,4 @@
-package ch.jll.nat_speedtest.speedtest;
+package ch.jll.nat_speedtest.test_and_helpers;
 
 import android.os.AsyncTask;
 
@@ -15,6 +15,8 @@ public class Ping extends AsyncTask<String, Void, Object> {
         this.callback = callback;
     }
 
+
+    //Wir pingen bei unseren ping-speedtest den Swisscom-Server an
     @Override
     protected Object doInBackground(String... strings) {
         try {

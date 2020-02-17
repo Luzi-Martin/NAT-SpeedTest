@@ -1,4 +1,4 @@
-package ch.jll.nat_speedtest.speedtest;
+package ch.jll.nat_speedtest.test_and_helpers;
 
 /**
  *
